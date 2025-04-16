@@ -3,6 +3,8 @@
 #SingleInstance Force
 FileEncoding "UTF-8"
 
+try TraySetIcon(A_ScriptDir "\icon.ico")
+
 ; === Глобальные переменные ===
 global currentGui := unset
 global lastClipboard := ""
