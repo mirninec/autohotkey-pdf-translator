@@ -277,3 +277,4 @@ Esc::
     if IsSet(currentGui)
         SaveAndClose()
 }
+
