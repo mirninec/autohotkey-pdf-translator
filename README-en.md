@@ -1,71 +1,42 @@
-# Automatic Text Translator for SumatraPDF
 
-This [AutoHotkey v2](https://www.autohotkey.com/) script automatically translates selected text in SumatraPDF from English to Russian when the left mouse button is released. The translated text is displayed in a separate window, and the window’s position is saved between sessions.
+# AutoHotkey PDF Translator
 
-## 🧩 Features
+This script allows you to quickly translate text selected in SumatraPDF from English to Russian using a simple mouse action. The translation is displayed in a separate window.
 
-- Captures selected text from SumatraPDF
-- Translates via WSL using `translate-shell` (`trans`)
-- Supports both single words and full phrases
-- Neat popup window showing original and translated text
-- Remembers window size and position
-- Fully runs in the background
+## Features
 
-## 🛠️ Requirements
+- 🖱️ Just select text in SumatraPDF and release the left mouse button — the script will automatically copy and translate it.
+- 🌀 A "translating..." tooltip appears near the mouse cursor.
+- 🌐 Uses the command-line translator [`trans`](https://github.com/soimort/translate-shell) running in WSL (Windows Subsystem for Linux).
+- 📄 The translation result appears in a resizable window.
+- 🔁 The translation window allows editing the original text and re-translating it.
+- 💾 Remembers the position and size of the translation window between runs.
 
-- **Windows 10/11**
-- [AutoHotkey v2](https://www.autohotkey.com/) (version 2 is required!)
-- Installed [WSL](https://learn.microsoft.com/en-us/windows/wsl/)
-- Installed [`translate-shell`](https://github.com/soimort/translate-shell) in WSL:
+## Requirements
 
-  ```bash
-  sudo apt update
-  sudo apt install translate-shell
-  ```
+- [AutoHotkey v2](https://www.autohotkey.com/)
+- [SumatraPDF](https://www.sumatrapdfreader.org/free-pdf-reader)
+- [WSL (Windows Subsystem for Linux)](https://learn.microsoft.com/en-us/windows/wsl/)
+- [`trans`](https://github.com/soimort/translate-shell) — install in your WSL environment
 
-- `iconv` utility (usually pre-installed in WSL)
+Example installation for `trans` in Ubuntu (WSL):
 
-## ⚙️ Installation
+```bash
+sudo apt update
+sudo apt install translate-shell
+```
 
-1. Download the file `translator.ahk`.
-2. Make sure the `trans` command works inside WSL.
-3. Run the script using AutoHotkey v2.
-4. Open a PDF document in [SumatraPDF](https://www.sumatrapdfreader.org/free-pdf-reader).
-5. Select text and release the left mouse button — the translation window will appear.
+## How it works
 
-## 🧪 Example Usage
+1. The script waits for the left mouse button to be released in SumatraPDF.
+2. It simulates `Ctrl+C`, cleans up line breaks, and stores the selected text.
+3. The text is passed to the `trans` utility via WSL.
+4. The translation result is shown in a window with the ability to copy or edit the text.
 
-1. Open an English PDF in SumatraPDF.
-2. Select some text:
-   ```
-   Artificial intelligence is transforming industries.
-   ```
-3. Release the left mouse button.
-4. See the translation window:
-   ```
-   Искусственный интеллект трансформирует отрасли.
-   ```
+## License
 
-## 📝 Settings
-
-- The file `window_pos.ini` is created automatically in the script folder.
-- It stores the window's size and position so it can reopen in the same place.
-
-## ⛔ Exit the Script
-
-Press the `Esc` key to exit the script.
-
-## 📌 Notes
-
-- The script is designed for SumatraPDF but can be adapted for other apps.
-- The translation requires an internet connection — make sure WSL has access to the internet.
-
-## 📄 License
-
-MIT License — free to use, modify, and share.
+This project is licensed under the MIT License.
 
 ---
 
-**Author:** [mirninec]
-
-If you find this script useful, consider giving it a ⭐ and feel free to suggest improvements!
+© [mirninec](https://github.com/mirninec)
